@@ -59,7 +59,7 @@ Einträge auf der Webseite bestehen aus folgenden Komponenten (am Beispiel Hotel
 	- Wähle im Dropdown-Menü unter "Select Dummy Data" den gewünschten Dummy-Datensatz aus
 	- Beschreibungen und Details der Dummy-Daten werden automatisch ausgefüllt
 
-![Dummy Data Screenshot](images/dummy-data)
+![Dummy Data Screenshot](images/dummy-data.jpeg)
 
 ## Admin Rating Management
 Die Admin Rating Management Seite ermöglicht es dem Administrator, Bewertungen und Einträge für verschiedene Kategorien wie Hotels, Flüge und Mietwagen zu verwalten. Es gibt eine klare Struktur zur Auswahl eines zu bewertenden Elements und eine Übersicht aller bereits vorhandenen Bewertungen. Die Schaltflächen und Tabellen sind intuitiv gestaltet, um eine einfache Navigation und Verwaltung zu ermöglichen.
