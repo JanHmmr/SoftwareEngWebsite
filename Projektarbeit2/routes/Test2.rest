@@ -1,0 +1,323 @@
+### Flug Router Tests ###
+
+# Admin: Erstellen eines neuen Fluges (Admin only)
+POST http://localhost:3001/admin
+Content-Type: application/json
+
+{
+    "FlugID": "FL123",
+    "Abflugsort": "Berlin",
+    "Zielort": "Paris",
+    "FlugDatum": "2023-05-14",
+    "Fluggesellschaft": "Lufthansa",
+    "Flugzeugtyp": "A320",
+    "Sitzplatznummer": "12A",
+    "Ticketpreis": 150
+}
+
+###
+
+# Benutzer: Erstellen eines neuen Fluges (sollte fehlschlagen)
+POST http://localhost:3001/
+Content-Type: application/json
+
+{
+    "FlugID": "FL124",
+    "Abflugsort": "Berlin",
+    "Zielort": "München",
+    "FlugDatum": "2023-05-15",
+    "Fluggesellschaft": "Lufthansa",
+    "Flugzeugtyp": "A320",
+    "Sitzplatznummer": "14B",
+    "Ticketpreis": 120
+}
+
+###
+
+# Benutzer: Abrufen aller Flüge (User and Admin)
+GET http://localhost:3001/
+
+###
+
+# Benutzer: Abrufen eines bestimmten Fluges (User and Admin)
+GET http://localhost:3001/664344e59ea1f035c5ec1162
+
+###
+
+# Admin: Aktualisieren eines Fluges (Admin only)
+PUT http://localhost:3001/admin/664344e59ea1f035c5ec1162
+Content-Type: application/json
+
+{
+    "Zielort": "Hund",
+    "Ticketpreis": 180
+}
+
+###
+
+# Benutzer: Aktualisieren eines Fluges (sollte fehlschlagen)
+PUT http://localhost:3001/664344e59ea1f035c5ec1162
+Content-Type: application/json
+
+{
+    "Zielort": "Rom",
+    "Ticketpreis": 160
+}
+
+###
+
+# Admin: Löschen eines Fluges (Admin only)
+DELETE http://localhost:3001/admin/66434ab714e3d807a11f804d
+
+###
+
+# Benutzer: Löschen eines Fluges (sollte fehlschlagen)
+DELETE http://localhost:3001/66434ab714e3d807a11f804d
+
+###
+
+### Hotel Router Tests ###
+
+# Admin: Erstellen einer neuen Hotelbuchung (Admin only)
+POST http://localhost:3000/admin
+Content-Type: application/json
+
+{
+    "HotelID": "H123",
+    "Name": "Hotel Berlin",
+    "Beschreibung": "Ein schönes Hotel in Berlin",
+    "Bewertung": 5,
+    "Buchungsdatum": "2023-05-01",
+    "CheckInDatum": "2023-05-14",
+    "CheckOutDatum": "2023-05-20",
+    "AnzahlGaeste": 2,
+    "ZimmerTyp": "Deluxe",
+    "Gesamtpreis": 500
+}
+
+###
+
+# Benutzer: Erstellen einer neuen Hotel (sollte fehlschlagen)
+POST http://localhost:3000/
+Content-Type: application/json
+
+{
+    "HotelID": "H124",
+    "Name": "Hotel München",
+    "Beschreibung": "Ein schönes Hotel in München",
+    "Bewertung": 4,
+    "Buchungsdatum": "2023-05-02",
+    "CheckInDatum": "2023-05-15",
+    "CheckOutDatum": "2023-05-21",
+    "AnzahlGaeste": 1,
+    "ZimmerTyp": "Standard",
+    "Gesamtpreis": 300
+}
+
+###
+
+# Benutzer: Abrufen aller Hotel (User and Admin)
+GET http://localhost:3000/
+
+###
+
+# Benutzer: Abrufen einer bestimmten Hotelbuchung (User and Admin)
+GET http://localhost:3000/66435e44617472faeaa33f3e
+
+###
+
+# Admin: Aktualisieren einer Hotelbuchung (Admin only)
+PUT http://localhost:3000/admin/66435e44617472faeaa33f3e
+Content-Type: application/json
+
+{
+    "Name": "Hotel Berlin Updated",
+    "Gesamtpreis": 550
+}
+
+###
+
+# Benutzer: Aktualisieren einer Hotelbuchung (sollte fehlschlagen)
+PUT http://localhost:3000/66435e44617472faeaa33f3e
+Content-Type: application/json
+
+{
+    "Name": "Hotel Berlin Update Failed",
+    "Gesamtpreis": 600
+}
+
+###
+
+# Admin: Löschen einer Hotelbuchung (Admin only)
+DELETE http://localhost:3000/admin/66435e44617472faeaa33f3e
+
+###
+
+# Benutzer: Löschen einer Hotelbuchung (sollte fehlschlagen)
+DELETE http://localhost:3000/66435e44617472faeaa33f3e
+
+###
+GET http://localhost:3000/rating/664364fd11ceacabf860743b
+###
+POST http://localhost:3003/
+Content-Type: application/json
+
+{
+    "ElementID": "664364fd11ceacabf860743b",
+    "typ": "Hotel",
+    "bewertung": 4,
+    "beschreibung": "Sehr gutes Hotel asassa",
+    "userName": "bev"
+}
+### Mietwagen Router Tests ###
+
+# Admin: Erstellen einer neuen Mietwagenbuchung (Admin only)
+POST http://localhost:3002/admin
+Content-Type: application/json
+
+{
+    "WagenID": "W123",
+    "Name": "BMW X5",
+    "Beschreibung": "Ein luxuriöser SUV",
+    "Preis": 100,
+    "Verfuegbarkeit": true,
+    "Standort": "Berlin",
+    "Kilometerstand": 15000,
+    "Baujahr": 2020
+}
+
+###
+
+# Benutzer: Erstellen einer neuen Mietwagenbuchung (sollte fehlschlagen)
+POST http://localhost:3002/
+Content-Type: application/json
+
+{
+    "WagenID": "W124",
+    "Name": "Audi A4",
+    "Beschreibung": "Ein sportlicher Sedan",
+    "Preis": 80,
+    "Verfuegbarkeit": true,
+    "Standort": "München",
+    "Kilometerstand": 20000,
+    "Baujahr": 2019
+}
+
+###
+
+# Benutzer: Abrufen aller Mietwagenbuchungen (User and Admin)
+GET http://localhost:3002/
+
+###
+
+# Benutzer: Abrufen einer bestimmten Mietwagenbuchung (User and Admin)
+GET http://localhost:3002/66435f299a5b832ed4ca9a00
+
+###
+
+# Admin: Aktualisieren einer Mietwagenbuchung (Admin only)
+PUT http://localhost:3002/admin/66435f299a5b832ed4ca9a00
+Content-Type: application/json
+
+{
+    "Preis": 120,
+    "Verfuegbarkeit": false
+}
+
+###
+
+# Benutzer: Aktualisieren einer Mietwagenbuchung (sollte fehlschlagen)
+PUT http://localhost:3002/66435f299a5b832ed4ca9a00
+Content-Type: application/json
+
+{
+    "Preis": 110,
+    "Verfuegbarkeit": true
+}
+
+###
+
+# Admin: Löschen einer Mietwagenbuchung (Admin only)
+DELETE http://localhost:3002/admin/66435f299a5b832ed4ca9a00
+
+###
+
+# Benutzer: Löschen einer Mietwagenbuchung (sollte fehlschlagen)
+DELETE http://localhost:3002/66435f299a5b832ed4ca9a00
+
+###
+### Neue Bewertung erstellen (User and Admin)
+POST http://localhost:3003/admin
+Content-Type: application/json
+
+{
+    "ElementID": "E123",
+    "typ": "Flug",
+    "bewertung": 4,
+    "beschreibung": "Sehr gutes Hotel",
+    "userName": "benutzer222"
+}
+
+###
+### Alle Bewertungen abrufen (Admin only)
+GET http://localhost:3003/admin
+Content-Type: application/json
+
+###
+### Bewertungen des angegebenen Benutzers abrufen (User only)
+GET http://localhost:3003/benutzer222
+Content-Type: application/json
+
+
+###
+### Ein bestimmtes Rating auslesen (User and Admin)
+GET http://localhost:3003/admin/66436225f2982bf2c101419d
+Content-Type: application/json
+
+###
+### Ein bestimmtes Rating auslesen (User and Admin)
+GET http://localhost:3003/60d5f9e93b4d3c40b8f8e29c
+Content-Type: application/json
+
+
+###
+### Rating löschen (Admin and Owner)
+DELETE http://localhost:3003/admin/66436225f2982bf2c101419d
+Content-Type: application/json
+
+
+###
+### Rating löschen (Admin and Owner)
+DELETE http://localhost:3003/6643636f66d6f67b93bdf5d6
+Content-Type: application/json
+
+{
+    "userName": "benutzer222"
+}
+
+
+###
+### Ein Rating aktualisieren (Admin and Owner)
+PUT http://localhost:3003/admin/66436109077a79a146ed100b
+Content-Type: application/json
+
+{
+    "ElementID": "E123",
+    "typ": "Hotel",
+    "bewertung": 5,
+    "beschreibung": "Exzellentes Hotel",
+    "userName": "benutzer1"
+}
+
+###
+### Ein Rating aktualisieren (Admin and Owner)
+PUT http://localhost:3003/66436109077a79a146ed100b
+Content-Type: application/json
+
+{
+    "ElementID": "E123sssss",
+    "typ": "Hotel",
+    "bewertung": 5,
+    "beschreibung": "Exzellentes Hotel",
+    "userName": "benutzer1"
+}
